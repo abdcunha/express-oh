@@ -34,18 +34,18 @@ router.use(userModelRateLimit);
 /**
  * @openapi
  * tags:
- *   - name: Users
- *     description: User operations
+ *   - name: Users v1
+ *     description: User operations for v1 endpoints
  */
 
 /**
  * @openapi
- * /users:
+ * /v1/users:
  *   post:
  *     security:
  *       - bearerAuth: []
  *     summary: Create a new user
- *     tags: [Users]
+ *     tags: [Users v1]
  *     requestBody:
  *       required: true
  *       content:
@@ -113,12 +113,12 @@ router.use(userModelRateLimit);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *
- * /users/{id}:
+ * /v1/users/{id}:
  *   get:
  *     security:
  *       - bearerAuth: []
  *     summary: Get user by ID
- *     tags: [Users]
+ *     tags: [Users v1]
  *     parameters:
  *       - in: path
  *         name: id
@@ -150,7 +150,7 @@ router.use(userModelRateLimit);
  *     security:
  *       - bearerAuth: []
  *     summary: Update user completely
- *     tags: [Users]
+ *     tags: [Users v1]
  *     parameters:
  *       - in: path
  *         name: id
@@ -181,7 +181,7 @@ router.use(userModelRateLimit);
  *     security:
  *       - bearerAuth: []
  *     summary: Update user partially
- *     tags: [Users]
+ *     tags: [Users v1]
  *     parameters:
  *       - in: path
  *         name: id
@@ -217,7 +217,7 @@ router.use(userModelRateLimit);
  *     security:
  *       - bearerAuth: []
  *     summary: Delete user
- *     tags: [Users]
+ *     tags: [Users v1]
  *     parameters:
  *       - in: path
  *         name: id
@@ -238,11 +238,11 @@ router.get("/:id", getUser);
 
 /**
  * @openapi
- * /users:
+ * /v1/users:
  *   post:
  *     summary: Create user
  *     description: Validates payload and returns the created user echo. Name and email are required by validateUsers middleware.
- *     tags: [Users]
+ *     tags: [Users v1]
  *     requestBody:
  *       required: true
  *       content:
@@ -291,11 +291,11 @@ router.post("/", validateUsers, postUser);
 
 /**
  * @openapi
- * /users/{id}:
+ * /v1/users/{id}:
  *   put:
  *     summary: Replace/update user
  *     description: Validates payload and echoes the updated fields for the specified user ID.
- *     tags: [Users]
+ *     tags: [Users v1]
  *     parameters:
  *       - name: id
  *         in: path
@@ -351,7 +351,7 @@ router.put("/:id", validateUsers, putUser);
  *   patch:
  *     summary: Partially update user
  *     description: Partially updates fields for a user and echoes the updated fields.
- *     tags: [Users]
+ *     tags: [Users v1]
  *     parameters:
  *       - name: id
  *         in: path
@@ -394,7 +394,7 @@ router.patch("/:id", patchUser);
  *   delete:
  *     summary: Delete user
  *     description: Deletes a user and returns a confirmation message.
- *     tags: [Users]
+ *     tags: [Users v1]
  *     parameters:
  *       - name: id
  *         in: path

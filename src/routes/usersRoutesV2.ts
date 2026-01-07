@@ -34,18 +34,18 @@ router.use(userModelRateLimit);
 /**
  * @openapi
  * tags:
- *   - name: Users
- *     description: User operations
+ *   - name: Users v2
+ *     description: User operations for v2 endpoints
  */
 
 /**
  * @openapi
- * /users:
+ * /v2/users:
  *   post:
  *     security:
  *       - bearerAuth: []
  *     summary: Create a new user
- *     tags: [Users]
+ *     tags: [Users v2]
  *     requestBody:
  *       required: true
  *       content:
@@ -113,12 +113,12 @@ router.use(userModelRateLimit);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *
- * /users/{id}:
+ * /v2/users/{id}:
  *   get:
  *     security:
  *       - bearerAuth: []
  *     summary: Get user by ID
- *     tags: [Users]
+ *     tags: [Users v2]
  *     parameters:
  *       - in: path
  *         name: id
@@ -146,103 +146,16 @@ router.use(userModelRateLimit);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *
- *   put:
- *     security:
- *       - bearerAuth: []
- *     summary: Update user completely
- *     tags: [Users]
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/User'
- *     responses:
- *       200:
- *         description: User updated
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: success
- *                 data:
- *                   $ref: '#/components/schemas/User'
- *
- *   patch:
- *     security:
- *       - bearerAuth: []
- *     summary: Update user partially
- *     tags: [Users]
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *               email:
- *                 type: string
- *     responses:
- *       200:
- *         description: User updated
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: success
- *                 data:
- *                   $ref: '#/components/schemas/User'
- *
- *   delete:
- *     security:
- *       - bearerAuth: []
- *     summary: Delete user
- *     tags: [Users]
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       204:
- *         description: User deleted
- *       404:
- *         description: User not found
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  */
 router.get("/:id", getUser);
 
 /**
  * @openapi
- * /users:
+ * /v2/users:
  *   post:
  *     summary: Create user
  *     description: Validates payload and returns the created user echo. Name and email are required by validateUsers middleware.
- *     tags: [Users]
+ *     tags: [Users v2]
  *     requestBody:
  *       required: true
  *       content:
@@ -291,11 +204,11 @@ router.post("/", validateUsers, postUser);
 
 /**
  * @openapi
- * /users/{id}:
+ * /v2/users/{id}:
  *   put:
  *     summary: Replace/update user
  *     description: Validates payload and echoes the updated fields for the specified user ID.
- *     tags: [Users]
+ *     tags: [Users v2]
  *     parameters:
  *       - name: id
  *         in: path
@@ -351,7 +264,7 @@ router.put("/:id", validateUsers, putUser);
  *   patch:
  *     summary: Partially update user
  *     description: Partially updates fields for a user and echoes the updated fields.
- *     tags: [Users]
+ *     tags: [Users v2]
  *     parameters:
  *       - name: id
  *         in: path
@@ -394,7 +307,7 @@ router.patch("/:id", patchUser);
  *   delete:
  *     summary: Delete user
  *     description: Deletes a user and returns a confirmation message.
- *     tags: [Users]
+ *     tags: [Users v2]
  *     parameters:
  *       - name: id
  *         in: path
