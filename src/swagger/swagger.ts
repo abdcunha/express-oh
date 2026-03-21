@@ -9,7 +9,7 @@ export const swaggerSpec = swaggerJSDoc({
       description: "API documentation for Express, Oh! application",
       contact: {
         name: "Express Oh Maintainers",
-        url: "https://github.com/anoop/express-oh",
+        url: "https://github.com/adcunha/express-oh",
         email: "support@example.com",
       },
       "x-logo": {
